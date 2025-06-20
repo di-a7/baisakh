@@ -1,0 +1,36 @@
+# Restaurant Management System
+User:
+   user_id(Primary Key)
+   name
+   phone_number
+   email
+   address
+   type(admin, gerneral_user, staff)
+
+Category:(Breakfast, drink, dinner)
+   category_id (Primary Key)
+   name
+
+Food:  tea , salad, soup: these data of food table lies in Breakfast category
+   food_id(Primary Key)
+   name
+   description
+   price
+   category(Foreign Key- primary key of category table: 1 to many Relation)
+
+Table:
+   table_id
+   table_number
+   status(available or not)
+
+Order:  1 - pizza, burger, soft dirnk
+   order_id(Primary Key)
+   User (Foreign key)
+   total_price
+   status(pending, delivered, cancelled)
+   payment_status(payed, unpayed)
+
+OrderItem:
+   order_item_id(Primary Key)
+   Order(Foreign key)
+   Food(Foreign Key)
