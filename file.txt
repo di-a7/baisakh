@@ -34,3 +34,6 @@ OrderItem:
    order_item_id(Primary Key)
    Order(Foreign key)
    Food(Foreign Key)
+
+pip freeze > requirements.txt
+pip install -r requirements.txt
