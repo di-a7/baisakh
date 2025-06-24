@@ -5,12 +5,18 @@ User = get_user_model()
 # Create your models here.
 class Category(models.Model):
    name = models.CharField(max_length=15)
+   
+   def __str__(self):
+      return self.name
 
 class Food(models.Model):
    name = models.CharField(max_length=20)
    description = models.TextField()
    price = models.FloatField()
    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+   
+   def __str__(self):
+      return self.name
 
 class Table(models.Model):
    AVAILABLE = 'A'
@@ -39,6 +45,9 @@ class Order(models.Model):
    total_price = models.FloatField()
    status = models.CharField(max_length=1, choices=STATUS_CHOICE, default=PENDING)
    payment_status = models.CharField(max_length=1, choices=PAYMENT_STATUS, default=UNPAID)
+   # table
+   def __str__(self):
+      return self.User.username
 
 class OrderItem(models.Model):
    order = models.ForeignKey(Order, on_delete=models.PROTECT)
