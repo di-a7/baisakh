@@ -10,7 +10,8 @@ from rest_framework.views import APIView
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.pagination import PageNumberPagination
-
+# from rest_framework import permissions
+from .permission import IsAuthenticatedOrReadOnly
 class CatergoryViewset(ModelViewSet):
    queryset = Category.objects.all()
    serializer_class = CategorySerializer
@@ -27,3 +28,4 @@ class FoodViewset(ModelViewSet):
    queryset = Food.objects.select_related('category').all()
    serializer_class = FoodSerializer
    pagination_class = PageNumberPagination
+   permission_classes = [IsAuthenticatedOrReadOnly]
