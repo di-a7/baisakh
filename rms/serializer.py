@@ -26,7 +26,7 @@ class FoodSerializer(serializers.ModelSerializer):
    )
    class Meta:
       model = Food
-      fields =["name","description","price","price_with_tax","category_id","category"]
+      fields =["id","name","description","price","price_with_tax","category_id","category"]
    
    def get_price_with_tax(self, food:Food):
       return food.price * 1.03 + food.price

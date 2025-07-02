@@ -12,6 +12,9 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.pagination import PageNumberPagination
 # from rest_framework import permissions
 from .permission import IsAuthenticatedOrReadOnly
+from rest_framework import filters
+from .filters import FoodFilter
+from django_filters import rest_framework as filter
 class CatergoryViewset(ModelViewSet):
    queryset = Category.objects.all()
    serializer_class = CategorySerializer
@@ -29,3 +32,7 @@ class FoodViewset(ModelViewSet):
    serializer_class = FoodSerializer
    pagination_class = PageNumberPagination
    permission_classes = [IsAuthenticatedOrReadOnly]
+   filter_backends = [filters.SearchFilter,filter.DjangoFilterBackend]
+   filterset_class = FoodFilter
+   # filterset_fields = ['name']
+   search_fields = ['name', 'description']
