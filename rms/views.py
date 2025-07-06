@@ -36,3 +36,7 @@ class FoodViewset(ModelViewSet):
    filterset_class = FoodFilter
    # filterset_fields = ['name']
    search_fields = ['name', 'description']
+
+class TableViewset(ModelViewSet):
+   queryset = Table.objects.all()
+   serializer_class = TableSerializer
