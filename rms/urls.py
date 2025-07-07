@@ -6,6 +6,7 @@ router = routers.SimpleRouter()
 router.register('category',CatergoryViewset, basename='category')
 router.register('food',FoodViewset, basename='food')
 router.register('table',TableViewset, basename='table')
+router.register('order',OrderViewset, basename='order')
 
 urlpatterns = [
    # path("category/", CatergoryViewset.as_view({'get':'list','post':'create','delete':'destroy'})) # used to create path for viewsets

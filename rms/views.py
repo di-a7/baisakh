@@ -40,3 +40,9 @@ class FoodViewset(ModelViewSet):
 class TableViewset(ModelViewSet):
    queryset = Table.objects.all()
    serializer_class = TableSerializer
+
+class OrderViewset(ModelViewSet):
+   queryset = Order.objects.prefetch_related('items').all()
+   serializer_class = OrderSerializer
+   pagination_class = PageNumberPagination
+   permission_classes = [IsAuthenticatedOrReadOnly]
