@@ -57,6 +57,6 @@ class OrderSerializer(serializers.ModelSerializer):
       order = Order.objects.create(**validated_data)
       
       for item in items: 
-         OrderItem.objects.create(order = order, **item)
+         OrderItem.objects.create(order = order, food = item['food_id'])
       
       return order

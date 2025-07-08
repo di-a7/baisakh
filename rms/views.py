@@ -11,7 +11,7 @@ from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIV
 from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
 from rest_framework.pagination import PageNumberPagination
 # from rest_framework import permissions
-from .permission import IsAuthenticatedOrReadOnly
+from .permission import IsAuthenticatedOrReadOnly, IsWaiterOrReadOnly
 from rest_framework import filters
 from .filters import FoodFilter
 from django_filters import rest_framework as filter
@@ -45,4 +45,4 @@ class OrderViewset(ModelViewSet):
    queryset = Order.objects.prefetch_related('items').all()
    serializer_class = OrderSerializer
    pagination_class = PageNumberPagination
-   permission_classes = [IsAuthenticatedOrReadOnly]
+   permission_classes = [IsAuthenticatedOrReadOnly,IsWaiterOrReadOnly]
