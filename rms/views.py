@@ -8,14 +8,14 @@ from rest_framework.validators import ValidationError
 from django.core.exceptions import ObjectDoesNotExist
 from rest_framework.views import APIView
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
-from rest_framework.viewsets import ModelViewSet
+from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
 from rest_framework.pagination import PageNumberPagination
 # from rest_framework import permissions
 from .permission import IsAuthenticatedOrReadOnly
 from rest_framework import filters
 from .filters import FoodFilter
 from django_filters import rest_framework as filter
-class CatergoryViewset(ModelViewSet):
+class CatergoryViewset(ReadOnlyModelViewSet):
    queryset = Category.objects.all()
    serializer_class = CategorySerializer
    
@@ -27,7 +27,7 @@ class CatergoryViewset(ModelViewSet):
       category.delete()
       return Response({"detail: Category deleted."}, status=status.HTTP_204_NO_CONTENT)
 
-class FoodViewset(ModelViewSet):
+class FoodViewset(ReadOnlyModelViewSet):
    queryset = Food.objects.select_related('category').all()
    serializer_class = FoodSerializer
    pagination_class = PageNumberPagination
@@ -37,7 +37,7 @@ class FoodViewset(ModelViewSet):
    # filterset_fields = ['name']
    search_fields = ['name', 'description']
 
-class TableViewset(ModelViewSet):
+class TableViewset(ReadOnlyModelViewSet):
    queryset = Table.objects.all()
    serializer_class = TableSerializer
 
